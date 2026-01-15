@@ -1,18 +1,17 @@
 # 🏠 Home Assistant Supervised sur Proxmox (CT Debian 12)
 
-Script Bash automatisé pour créer un **CT LXC Debian 12** sur **Proxmox VE**
-et installer **Home Assistant Supervised** sans prise de tête.
+Script Bash interactif pour créer automatiquement un **CT LXC Debian 12**
+et installer **Home Assistant Supervised** sur **Proxmox VE**.
 
 ---
 
 ## ✨ Fonctionnalités
 
-- Télécharge automatiquement le template Debian 12
-- Crée un CT LXC **non privilégié**
-- Active `nesting` et `keyctl`
-- Installe Docker + dépendances officielles
-- Installe Home Assistant Supervised
-- 100 % automatisé, interactif et reproductible
+- Liste automatiquement les **stockages Proxmox disponibles**
+- Télécharge le template Debian 12 si absent
+- CT LXC **non privilégié**
+- Docker + dépendances officielles
+- Installation Home Assistant Supervised 100 % automatisée
 
 ---
 
@@ -20,12 +19,11 @@ et installer **Home Assistant Supervised** sans prise de tête.
 
 - Proxmox VE 7 ou 8
 - Accès root
-- Stockage Proxmox fonctionnel
 - Connexion internet sur l’hôte
 
 ---
 
-## 🚀 Installation
+## 🚀 Utilisation
 
 ```bash
 chmod +x create-ha-ct.sh
