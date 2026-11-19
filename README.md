@@ -1,64 +1,35 @@
-<h1 align="center">Homelab Proxmox – Documentation</h1>
-<h3 align="center">Virtualisation • Réseaux • Services • Supervision</h3>
+# homelab-proxmox-docs
 
----
+La doc de mon homelab, en version publique. J'ai retiré tout ce qui permettrait de
+retrouver mon réseau : pas d'adresses, pas de noms de machines, pas de domaines,
+pas de numéros de conteneurs. Ce qui reste, c'est comment c'est organisé et
+pourquoi.
 
-## 🎯 Objectif
-Ce dépôt documente un **homelab basé sur Proxmox VE**, conçu pour apprendre et pratiquer
-l’administration **systèmes**, **réseaux** et **infrastructure IT** dans un contexte proche
-du monde professionnel.
+## En bref
 
-L’objectif n’est pas la performance brute, mais la **stabilité**, la **sécurité**,
-la **compréhension des flux** et la **maintenabilité**.
+Un serveur Proxmox VE fait tout tourner : une trentaine de conteneurs LXC et
+quelques VM. Un Proxmox Backup Server sur une autre machine sauvegarde tout chaque
+nuit. Le réseau passe par un routeur MikroTik, et un onduleur protège le tout.
 
----
+## Sommaire
 
-## 🧱 Environnement technique
-- **Hyperviseur** : Proxmox VE  
-- **Virtualisation** : VM & CT (LXC)  
-- **Systèmes** : Windows Server / Linux  
-- **Réseau** : segmentation logique, services réseau internes  
-- **Supervision** : Grafana, Prometheus, Zabbix  
-- **Automatisation** : Bash, PowerShell
+- [Vue d'ensemble et matériel](architecture/README.md)
+- [Réseau](architecture/reseau.md) : routeur, plan d'adressage, DNS, VPN
+- [Services](architecture/services.md) : ce qui tourne et comment c'est découpé
+- [Sauvegardes](architecture/sauvegardes.md) : PBS, NAS, tests de restauration
+- [Supervision et journaux](architecture/supervision.md) : Grafana, Uptime Kuma, Loki, alertes
+- [Sécurité](architecture/securite.md) : les règles que j'applique partout
+- [Retours d'expérience](notes/retours-experience.md) : les pannes et pièges qui m'ont appris quelque chose
 
----
+## Les outils que j'ai écrits pour le lab
 
-## 🧠 Compétences mises en œuvre
-- Création et gestion de **VM / conteneurs**
-- Configuration réseau virtuelle (bridges, isolation logique)
-- Déploiement et maintien de **services auto-hébergés**
-- Mise en place de la **supervision**
-- Diagnostic, dépannage et documentation
+- [proxmox-scripts](https://github.com/tom-lion38/proxmox-scripts) : post-installation, création de CT, sauvegardes, alertes
+- [phare](https://github.com/tom-lion38/phare) : une interface web pour gérer les sites (allumer, éteindre, brancher dans Caddy, déployer)
+- [abysse](https://github.com/tom-lion38/abysse) : une carte 3D du homelab qui bouge en direct
 
----
+## Comment je documente
 
-## 🧪 Services hébergés (exemples)
-- VPN  
-- Outils de supervision  
-- Services multimédias  
-- Services internes divers (tests, labs, automatisation)
-
-
----
-
-## 📁 Organisation du dépôt
-- `architecture/` : vue d’ensemble de l’infrastructure
-- `services/` : description des services hébergés
-- `automation/` : principes et scripts d’automatisation
-- `notes/` : bonnes pratiques, retours d’expérience
-
----
-
-## 🔐 Sécurité
-- Aucune IP publique, clé, mot de passe ou nom réel d’hôte n’est stocké
-- Les configurations sont **anonymisées**
-- Le dépôt sert à la **documentation**, pas à exposer l’infrastructure
-
----
-
-## 🚀 Évolution
-Ce dépôt évoluera avec :
-- de nouveaux services
-- des améliorations réseau
-- une meilleure automatisation
-- une documentation plus détaillée
+Chaque intervention sur le lab finit par une entrée datée dans un journal, dans un
+dépôt git privé hébergé sur le lab. Un script régénère chaque nuit l'état réel
+(liste des machines, sauvegardes, noms DNS), ce qui permet de comparer la doc et la
+réalité. Ce dépôt-ci en est la version nettoyée.
